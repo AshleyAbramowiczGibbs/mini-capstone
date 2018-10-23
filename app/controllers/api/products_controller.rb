@@ -2,6 +2,11 @@ class Api::ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    search_terms = params[:search]
+    if search_terms 
+      @products = @products.where("title ILIKE ?","%#{search_terms}%")
+    end
+    @products = Product.order(id: :asc)
     render "index.json.jbuilder"
   end
 
@@ -18,11 +23,13 @@ class Api::ProductsController < ApplicationController
       condition: params["condition"],
       original_price: params["original_price"],
       selling_price: params["selling_price"],
-      seller: params["seller"],
       image: params["image"]
       )
-    @product.save
-    render "show.json.jbuilder"
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render json: {errors: @product.errors.full_messages}, status: 422
+    end
   end
 
   def show
@@ -43,10 +50,12 @@ class Api::ProductsController < ApplicationController
     @product.condition = params["condition"] || @product.condition
     @product.original_price = params["original_price"] || @product.original_price
     @product.selling_price = params["selling_price"] || @product.selling_price
-    @product.seller = params["seller"] || @product.seller
     @product.image = params["image"] || @product.image
-    @product.save
-    render "show.json.jbuilder"
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render json: {errors: @product.errors.full_messages}, status: 422
+    end
   end
 
   def destroy
