@@ -23,7 +23,6 @@ class Api::ProductsController < ApplicationController
       condition: params["condition"],
       original_price: params["original_price"],
       selling_price: params["selling_price"],
-      image: params["image"]
       )
     if @product.save
       render "show.json.jbuilder"
@@ -50,7 +49,6 @@ class Api::ProductsController < ApplicationController
     @product.condition = params["condition"] || @product.condition
     @product.original_price = params["original_price"] || @product.original_price
     @product.selling_price = params["selling_price"] || @product.selling_price
-    @product.image = params["image"] || @product.image
     if @product.save
       render "show.json.jbuilder"
     else
