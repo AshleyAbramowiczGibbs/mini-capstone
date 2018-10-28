@@ -25,7 +25,20 @@ class Product < ApplicationRecord
   end
 
   def image
-    Image.find_by(id: image_id)
+    Image.where(product_id: self.id)
   end
+  #shortcut has_many :images
+
+  def image_url_list
+    list = []
+    image.each do |image|
+      list << image.url
+    end
+    list
+  end
+
+  has_many :orders
+  has_many :categories
+
 end
 

@@ -16,3 +16,4 @@ json.tax product.tax if product.selling_price
 json.total product.total if product.selling_price
 json.supplier product.supplier
 json.image product.image
+json.current_user current_user
