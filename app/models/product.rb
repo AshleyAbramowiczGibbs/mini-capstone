@@ -37,8 +37,15 @@ class Product < ApplicationRecord
     list
   end
 
-  has_many :orders
-  has_many :categories
+  has_many :category_product
+  has_many :categories, through: :category_products
+  has_many :cartedproducts
+  has_many :orders, through: :cartedproducts
+  
+
+
+
+
 
 end
 
