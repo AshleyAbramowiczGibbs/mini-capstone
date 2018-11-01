@@ -10,11 +10,9 @@ class Api::OrdersController < ApplicationController
     product = CartedProduct.where(user_id: current_user.id, status: "carted")
     @order = Order.new(
       user_id: current_user.id, 
-      product_id: cartedproduct.product_id,
-      quantity: cartedproduct.quantity,
-      subtotal: cartedproduct.quantity * product.selling_price,
-      tax: cartedproduct.quantity * product.tax,
-      total: subtotal + tax
+      subtotal: calculated_subtotal, #cartedproduct.quantity * product.selling_price,
+      tax: calculated_tax, #cartedproduct.quantity * product.tax,
+      total: calculated_total #subtotal + tax
     )
     if @order.save
       render json: {message: "You have a new order!" }, status: :created
