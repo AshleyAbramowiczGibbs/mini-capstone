@@ -6,3 +6,6 @@
 <h4><%= @product.alteration_information %></h1>
 <h3><%= @product.original_price %></h1>
 <h3><%= @product.selling_price %></h1>
+<a href="/products/<%= @product.id%>/edit"> Edit this Product </a> <br>
+<a href="/products/<%= @product.id%>" data-method="delete"> Delete this Product </a> <br>
+<a href="/products"> Back to all Dresses </a>

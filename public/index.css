@@ -1,0 +1,14 @@
+body {
+  font-family: Candara,Calibri,Segoe,"Segoe UI",Optima,Arial,sans-serif;
+  background-image: url('green_dust_scratch.png');
+}
+
+.jumbotron {
+  opacity: 0.8; 
+}
+
+.btn-primary{
+  background: #b76e79 ;
+  border: white;
+}
+
