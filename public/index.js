@@ -7,12 +7,15 @@ axios.get("/api/products").then(function(response) {
   let productTemplate = document.querySelector("#card-group");
   let productContainer = document.querySelector(".row");
 
-  products.forEach(function(product) {
-    productContainer.appendChild(productTemplate.content.cloneNode(true));
+  productContainer.appendChild(productTemplate.content.cloneNode(true));
 
-    // productContainer.appendChild(productTemplate.content.cloneNode(true));
-    // productContainer.appendChild(productTemplate.content.cloneNode(true));
-    // productContainer.appendChild(productTemplate.content.cloneNode(true));
-    // productContainer.appendChild(productTemplate.content.cloneNode(true));
+  products.forEach(function(product) {
+    let copiedContent = productTemplate.content.cloneNode(true);
+    copiedContent.querySelector(".card-title").innerText = product.name;
+    if (product.image[0]) {
+      copiedContent.querySelector(".card-img-top").src = product.image[0].url;
+    }
+    copiedContent.querySelector(".card-text").innerText = product.description;
+    productContainer.appendChild(copiedContent);
   });
 });
