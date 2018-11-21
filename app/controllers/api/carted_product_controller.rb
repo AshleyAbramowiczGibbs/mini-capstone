@@ -1,4 +1,4 @@
-class Api::CartedProductController < ApplicationController
+ class Api::CartedProductController < ApplicationController
 
 
   def create
